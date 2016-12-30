@@ -81,7 +81,7 @@ namespace Alterna
         }
 
         public override int GetHashCode() =>
-            Value.GetHashCode() ^ HasValue.GetHashCode();
+            HasValue ? Value.GetHashCode() : 0;
 
         public string DebuggerDisplay =>
             HasValue ? "Some " + Value : "None";
