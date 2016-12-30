@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Alterna</id>
+    <version>1.0.0</version>
+    <title>Alterna</title>
+    <authors>Botond Balazs &lt;balazsbotond@gmail.com&gt;</authors>
+    <owners>Botond Balazs &lt;balazsbotond@gmail.com&gt;</owners>
+    <licenseUrl>https://raw.githubusercontent.com/balazsbotond/FluentUriBuilder/master/LICENSE.txt</licenseUrl>
+    <projectUrl>https://github.com/balazsbotond/Alterna</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A convenient, versatile and robust Option type for .NET applications.</description>
+    <releaseNotes>
+      Initial release.
+    </releaseNotes>
+    <copyright>Copyright 2015-2016 Botond Balázs</copyright>
+    <tags>option optional maybe nullable functional</tags>
+  </metadata>
+</package>
