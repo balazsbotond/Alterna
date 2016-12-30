@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Alterna
 {
+    [DebuggerDisplay("{DebuggerDisplay,nq}")]
     public struct Optional<T> : IEquatable<Optional<T>>
     {
         public static Optional<T> None => default(Optional<T>);
@@ -61,17 +63,27 @@ namespace Alterna
             HasValue ? Value : defaultValue;
 
         public bool Equals(Optional<T> other) =>
-            Value.Equals(other.Value) && HasValue == other.HasValue;
+            (!HasValue && !other.HasValue)
+            || (HasValue && other.HasValue && Value.Equals(other.Value));
 
         public override bool Equals(object obj)
         {
+            if (obj == null && !HasValue)
+                return true;
+
             if (obj is Optional<T>)
                 return Equals((Optional<T>)obj);
+
+            if (obj is T && HasValue)
+                return Value.Equals(obj);
 
             return false;
         }
 
         public override int GetHashCode() =>
             Value.GetHashCode() ^ HasValue.GetHashCode();
+
+        public string DebuggerDisplay =>
+            HasValue ? "Some " + Value : "None";
     }
 }
