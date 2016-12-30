@@ -9,7 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alterna.Tests", "Alterna.Te
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4BE663DD-C1D1-4972-9102-D478CB280B05}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
 		LICENSE.txt = LICENSE.txt
+		publish-nuget.cmd = publish-nuget.cmd
 		README.md = README.md
 	EndProjectSection
 EndProject
