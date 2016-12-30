@@ -72,8 +72,19 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="OptionalTests.cs" />
+    <Compile Include="Conversion.cs" />
+    <Compile Include="Convert.cs" />
+    <Compile Include="Equals.cs" />
+    <Compile Include="FlatMap.cs" />
+    <Compile Include="From.cs" />
+    <Compile Include="GetHashCode.cs" />
+    <Compile Include="Map.cs" />
+    <Compile Include="Match.cs" />
+    <Compile Include="None.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Some.cs" />
+    <Compile Include="ValueOrDefault.cs" />
+    <Compile Include="When.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
