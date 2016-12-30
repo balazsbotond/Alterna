@@ -36,6 +36,8 @@ namespace Alterna
 
         public void Match(Action<T> ifSome = null, Action ifNone = null)
         {
+            if (ifSome == null && ifNone == null)
+                throw new ArgumentNullException("At least one action must not be null");
             if (ifSome != null && HasValue)
                 ifSome(Value);
             if (ifNone != null && !HasValue)

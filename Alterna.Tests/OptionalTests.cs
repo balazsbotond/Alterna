@@ -44,6 +44,14 @@ namespace Alterna.Tests
         #region Match
 
         [Fact]
+        public void MatchThrowsIfBothArgumentsAreNull()
+        {
+            Optional<string>.None
+                .Invoking(o => o.Match(null, null))
+                .ShouldThrow<ArgumentNullException>();
+        }
+
+        [Fact]
         public void IfSomeNotExecutedIfNone()
         {
             Optional<string>.None.Match(
