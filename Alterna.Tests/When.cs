@@ -1,10 +1,19 @@
-﻿using Xunit;
-using FluentAssertions;
+﻿using FluentAssertions;
+using System;
+using Xunit;
 
 namespace Alterna.Tests
 {
     public class When
     {
+        [Fact]
+        public void WhenThrowsExceptionIfConditionIsNull()
+        {
+            Optional<string>.None
+                .Invoking(o => o.When(null))
+                .ShouldThrow<ArgumentNullException>();
+        }
+
         [Fact]
         public void WhenFalseReturnsNoneIfOptionalHasNoValue()
         {

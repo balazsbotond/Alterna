@@ -203,6 +203,9 @@ namespace Alterna
         /// </exception>
         public Optional<T> When(Predicate<T> condition)
         {
+            if (condition == null)
+                throw new ArgumentNullException(nameof(condition));
+
             if (!HasValue)
                 return None;
 
