@@ -231,6 +231,26 @@ namespace Alterna
             HasValue ? Value : defaultValue;
 
         /// <summary>
+        ///     Gets the value of the <c>Optional</c> if it has one.
+        /// </summary>
+        /// <param name="value">
+        ///     When this method returns, contains the value of the 
+        ///     <c>Optional</c>, if it has one; otherwise, the default value for
+        ///     the type of the value parameter. This parameter is passed 
+        ///     uninitialized.
+        /// </param>
+        /// <returns>
+        ///     <c>true</c> if the <c>Optional</c> has a value; otherwise,
+        ///     <c>false</c>
+        /// </returns>
+        public bool TryGetValue(out T value)
+        {
+            value = HasValue ? Value : default(T);
+
+            return HasValue;
+        }
+
+        /// <summary>
         ///     Determines whether the specified object is equal to this object.
         /// </summary>
         /// <param name="other">
