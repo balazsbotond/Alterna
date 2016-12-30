@@ -44,7 +44,13 @@ namespace Alterna
                 ifNone();
         }
 
-        public U Convert<U>(Func<T, U> ifSome, Func<U> ifNone) { throw new NotImplementedException(); }
+        public U Convert<U>(Func<T, U> ifSome, U ifNone)
+        {
+            if (ifSome == null)
+                throw new ArgumentNullException(nameof(ifSome));
+
+            return HasValue ? ifSome(Value) : ifNone;
+        }
 
         public Optional<U> Map<U>(Func<T, U> mapper)
         {
