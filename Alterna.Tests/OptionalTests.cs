@@ -41,54 +41,6 @@ namespace Alterna.Tests
 
         #endregion
 
-        #region Match
-
-        [Fact]
-        public void MatchThrowsIfBothArgumentsAreNull()
-        {
-            Optional<string>.None
-                .Invoking(o => o.Match(null, null))
-                .ShouldThrow<ArgumentNullException>();
-        }
-
-        [Fact]
-        public void IfSomeNotExecutedIfNone()
-        {
-            Optional<string>.None.Match(
-                ifSome: a => { throw new Exception(); });
-        }
-
-        [Fact]
-        public void IfNoneNotExecutedIfSome()
-        {
-            Optional<string>.Some("a").Match(
-                ifNone: () => { throw new Exception(); });
-        }
-
-        [Fact]
-        public void IfSomeExecutedIfSome()
-        {
-            var e = false;
-            Optional<string>.Some("a").Match(
-                ifSome: a => e = true,
-                ifNone: () => { throw new Exception(); });
-
-            e.Should().BeTrue();
-        }
-
-        [Fact]
-        public void IfNoneExecutedIfNone()
-        {
-            var e = false;
-            Optional<string>.None.Match(
-                ifSome: a => { throw new Exception(); },
-                ifNone: () => e = true);
-
-            e.Should().BeTrue();
-        }
-
-        #endregion
-
         #region From
 
         [Fact]
@@ -156,6 +108,19 @@ namespace Alterna.Tests
                 .ShouldThrow<ArgumentNullException>();
         }
 
+        [Fact]
+        public void MapperIsNotInvokedIfOptionalHasNoValue()
+        {
+            Optional<string>.None.Map<int>(v => { throw new Exception(); });
+        }
+
+        [Fact]
+        public void MapCanConvertToOptionOfAnotherType()
+        {
+            Optional<string>.Some("42").Map(v => int.Parse(v)).Value
+                .Should().Be(42);
+        }
+
         #endregion
 
         #region When
@@ -193,6 +158,54 @@ namespace Alterna.Tests
         {
             Optional<string>.Some("a").When(v => v == "a")
                 .Should().Be(Optional<string>.Some("a"));
+        }
+
+        #endregion
+
+        #region Match
+
+        [Fact]
+        public void MatchThrowsIfBothArgumentsAreNull()
+        {
+            Optional<string>.None
+                .Invoking(o => o.Match(null, null))
+                .ShouldThrow<ArgumentNullException>();
+        }
+
+        [Fact]
+        public void IfSomeNotExecutedIfNone()
+        {
+            Optional<string>.None.Match(
+                ifSome: a => { throw new Exception(); });
+        }
+
+        [Fact]
+        public void IfNoneNotExecutedIfSome()
+        {
+            Optional<string>.Some("a").Match(
+                ifNone: () => { throw new Exception(); });
+        }
+
+        [Fact]
+        public void IfSomeExecutedIfSome()
+        {
+            var e = false;
+            Optional<string>.Some("a").Match(
+                ifSome: a => e = true,
+                ifNone: () => { throw new Exception(); });
+
+            e.Should().BeTrue();
+        }
+
+        [Fact]
+        public void IfNoneExecutedIfNone()
+        {
+            var e = false;
+            Optional<string>.None.Match(
+                ifSome: a => { throw new Exception(); },
+                ifNone: () => e = true);
+
+            e.Should().BeTrue();
         }
 
         #endregion

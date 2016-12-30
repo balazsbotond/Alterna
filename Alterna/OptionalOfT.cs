@@ -51,10 +51,9 @@ namespace Alterna
             if (mapper == null)
                 throw new ArgumentNullException(nameof(mapper));
 
-            if (HasValue)
-                return Optional<U>.Some(mapper(Value));
-            else
-                return Optional<U>.None;
+            return HasValue
+                ? Optional<U>.Some(mapper(Value))
+                : Optional<U>.None;
         }
 
         public Optional<U> FlatMap<U>(Func<T, Optional<U>> mapper) { throw new NotImplementedException(); }
