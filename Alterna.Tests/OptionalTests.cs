@@ -36,13 +36,15 @@ namespace Alterna.Tests
         [Fact]
         public void IfSomeNotExecutedIfNone()
         {
-            Optional<string>.None.Match(ifSome: a => { throw new Exception(); });
+            Optional<string>.None.Match(
+                ifSome: a => { throw new Exception(); });
         }
 
         [Fact]
         public void IfNoneNotExecutedIfSome()
         {
-            Optional<string>.Some("a").Match(ifNone: () => { throw new Exception(); });
+            Optional<string>.Some("a").Match(
+                ifNone: () => { throw new Exception(); });
         }
 
         [Fact]
@@ -95,6 +97,33 @@ namespace Alterna.Tests
         public void ValueOrDefaultReturnsCustomDefaultValueIfSpecifiedAndOptionalHasNoValue()
         {
             Optional<int>.None.ValueOrDefault(42).Should().Be(42);
+        }
+
+        [Fact]
+        public void MapReturnsOptionalWithConvertedValueIfOptionalHasValue()
+        {
+            var original = Optional<string>.Some("abc");
+            var mapped = original.Map(s => s.ToUpper());
+
+            mapped.HasValue.Should().BeTrue();
+            mapped.Value.Should().Be("ABC");
+        }
+
+        [Fact]
+        public void MapReturnsNoneIfOptionalHasNoValue()
+        {
+            var original = Optional<string>.None;
+            var mapped = original.Map(s => s.ToUpper());
+
+            mapped.HasValue.Should().BeFalse();
+        }
+
+        [Fact]
+        public void MapThrowsExceptionIfItsArgumentIsNull()
+        {
+            Optional<string>.Some("a")
+                .Invoking(o => o.Map<string>(null))
+                .ShouldThrow<ArgumentNullException>();
         }
     }
 }

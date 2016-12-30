@@ -42,7 +42,16 @@ namespace Alterna
 
         public U Convert<U>(Func<T, U> ifSome, Func<U> ifNone) { throw new NotImplementedException(); }
 
-        public void Map<U>(Func<T, Optional<U>> mapper) { }
+        public Optional<U> Map<U>(Func<T, U> mapper)
+        {
+            if (mapper == null)
+                throw new ArgumentNullException(nameof(mapper));
+
+            if (HasValue)
+                return Optional<U>.Some(mapper(Value));
+            else
+                return Optional<U>.None;
+        }
 
         public Optional<U> FlatMap<U>(Func<T, Optional<U>> mapper) { throw new NotImplementedException(); }
 
