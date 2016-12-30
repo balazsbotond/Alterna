@@ -99,6 +99,11 @@ namespace Alterna
             return false;
         }
 
+        public static explicit operator T(Optional<T> v) => v.Value;
+
+        public static implicit operator Optional<T>(T v) =>
+            v == null ? None : Some(v);
+
         public override int GetHashCode() =>
             HasValue ? Value.GetHashCode() : 0;
 
