@@ -59,7 +59,13 @@ namespace Alterna
 
         public Optional<U> FlatMap<U>(Func<T, Optional<U>> mapper) { throw new NotImplementedException(); }
 
-        public Optional<T> When(Predicate<T> condition) { throw new NotImplementedException(); }
+        public Optional<T> When(Predicate<T> condition)
+        {
+            if (!HasValue)
+                return None;
+
+            return condition(Value) ? this : None;
+        }
 
         public T ValueOrDefault(T defaultValue = default(T)) =>
             HasValue ? Value : defaultValue;
