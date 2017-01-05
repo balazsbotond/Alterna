@@ -75,6 +75,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Clone.cs" />
     <Compile Include="Conversion.cs" />
     <Compile Include="Convert.cs" />
     <Compile Include="Covariance.cs" />

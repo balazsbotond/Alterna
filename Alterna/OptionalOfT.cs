@@ -10,7 +10,7 @@ namespace Alterna
     ///     The underlying type of the <c>Optional</c>.
     /// </typeparam>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public struct Optional<T> : IOptional<T>, IEquatable<Optional<T>>
+    public struct Optional<T> : IOptional<T>, IEquatable<Optional<T>>, ICloneable
     {
         /// <summary>
         ///     Represents the absence of value.
@@ -333,6 +333,23 @@ namespace Alterna
         /// </returns>
         public override string ToString() =>
             HasValue ? "Some " + Value : "None";
+
+        /// <summary>
+        ///     Creates a new object that is a copy of the current instance.
+        /// </summary>
+        /// <returns>
+        ///     A new object that is a copy of the current instance.
+        /// </returns>
+        public object Clone()
+        {
+            if (!HasValue) return None;
+
+            var cloneable = Value as ICloneable;
+            if (cloneable != null)
+                return Some((T)cloneable.Clone());
+
+            return Some(Value);
+        }
 
         /// <summary>
         ///     Returns the string representation of this <c>Optional</c> to be
