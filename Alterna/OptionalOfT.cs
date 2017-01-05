@@ -10,7 +10,7 @@ namespace Alterna
     ///     The underlying type of the <c>Optional</c>.
     /// </typeparam>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public struct Optional<T> : IEquatable<Optional<T>>
+    public struct Optional<T> : IOptional<T>, IEquatable<Optional<T>>
     {
         /// <summary>
         ///     Represents the absence of value.

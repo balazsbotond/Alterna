@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Alterna</id>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <title>Alterna</title>
     <authors>Botond Balazs &lt;balazsbotond@gmail.com&gt;</authors>
     <owners>Botond Balazs &lt;balazsbotond@gmail.com&gt;</owners>
@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A convenient, versatile and robust Option type for .NET applications.</description>
     <releaseNotes>
-      Initial release.
+      Add interface with covariant type parameter.
     </releaseNotes>
     <copyright>Copyright 2015-2016 Botond Balázs</copyright>
     <tags>option optional maybe nullable functional</tags>
