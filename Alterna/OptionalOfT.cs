@@ -265,6 +265,22 @@ namespace Alterna
             || (HasValue && other.HasValue && Value.Equals(other.Value));
 
         /// <summary>
+        /// Determines whether the specified Optional instances are equal.
+        /// </summary>
+        /// <param name="left">The left operand</param>
+        /// <param name="right">The right operand</param>
+        /// <returns>A bool value indicating whether the specified Optional instances are equal.</returns>
+        public static bool operator ==(Optional<T> left, Optional<T> right) => left.Equals(right);
+
+        /// <summary>
+        /// Determines whether the specified Optional instances are not equal.
+        /// </summary>
+        /// <param name="left">The left operand</param>
+        /// <param name="right">The right operand</param>
+        /// <returns>A bool value indicating whether the specified Optional instances are not equal.</returns>
+        public static bool operator !=(Optional<T> left, Optional<T> right) => !left.Equals(right);
+
+        /// <summary>
         ///     Determines whether the specified object is equal to this object.
         /// </summary>
         /// <param name="obj">
